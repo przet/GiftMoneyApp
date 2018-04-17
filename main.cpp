@@ -3,11 +3,41 @@
 #include "item.hpp"
 #include "money1.hpp"
 #include <memory>
+#include <fstream>
+#include <string>
 
 int main()
 {
-    const double money1Amt = 100;
-    const double money2Amt = 200;
+    std::string filename = "amounts.txt";
+    double money1Amt;
+    double money2Amt;
+     
+    std::ifstream inFile;
+    std::string line;
+    try 
+    {
+        inFile.open(filename.c_str());
+        if (inFile.fail())
+            throw filename;
+    inFile >> money1Amt;
+    std::cout << money1Amt << std::endl;
+    while (inFile.good() && getline(inFile,line))
+    {
+        if (line[0] != '#' && line[0] != ' ')
+            inFile >> money1Amt;
+        std::cout << money1Amt << std::endl;
+    }
+
+
+    }
+    catch(std::string e)
+    {
+        std::cout << "The file " << e << " was not successfully opened." << std::endl;
+    }
+
+
+    
+    
     
     //Program User Interaction Section
     std::cout << "Please select (1,2,...) choice: " << std::endl;
