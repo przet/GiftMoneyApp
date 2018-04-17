@@ -35,3 +35,6 @@
 *.*.swp
 *.*~
 
+#specific ignore
+amounts.txt
+
