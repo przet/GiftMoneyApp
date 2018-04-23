@@ -5,6 +5,7 @@
 #include <memory>
 #include <fstream>
 #include <string>
+#include <vector>
 
 int main()
 {
@@ -14,19 +15,17 @@ int main()
      
     std::ifstream inFile;
     std::string line;
+    std::vector <std::string> lineVec;
     try 
     {
         inFile.open(filename.c_str());
         if (inFile.fail())
             throw filename;
-    inFile >> money1Amt;
-    std::cout << money1Amt << std::endl;
-    while (inFile.good() && getline(inFile,line))
+    while (getline(inFile,line))
     {
-        if (line[0] != '#' && line[0] != ' ')
-            inFile >> money1Amt;
-        std::cout << money1Amt << std::endl;
+        lineVec.push_back(line);
     }
+    inFile.close();
 
 
     }
@@ -35,33 +34,38 @@ int main()
         std::cout << "The file " << e << " was not successfully opened." << std::endl;
     }
 
+    //Console Output Section 
+    std::cout << "                          " << std::endl;
+    std::cout << "                          " << std::endl;
+    std::cout << "$$$$$ MONEY 1 AMOUNT $$$$$" << "          "
+        << "$$$$$ MONEY 2 AMOUNT $$$$$"<<std::endl;
+    std::cout << "                          " << std::endl;
+    std::cout << "  ----- " <<lineVec[0]<<" -----"<<"               "
+        "          "<< "-----" <<lineVec[1]<< "-----"<<std::endl;
+    std::cout << "                          " << std::endl;
+    std::cout << "                          " << std::endl;
+    std::cout << "                          " << std::endl;
 
-    
-    
-    
-    //Program User Interaction Section
-    std::cout << "Please select (1,2,...) choice: " << std::endl;
-    std::cout << "1. Show amount in both monies " << std::endl;
-    char input;
-    std::cin >> input;
-    if (input = '1')
-        std::cout << "hello";
-
+    //Money class(es) instantiation(s)
+    Money1 money1(double(lineVec[0]));
+    Money2 money2(double(lineVec[1]));
     Item item;
-    Money1 money1(money1Amt);
-    Money1 *money1_ptr = &money1;
-    item.setPrice(120);
-    money1.deductItem(item);
-    if (money1.getAmount() <= 0)
-    { 
-        std::cout << "out of money:switching over to 2" << std::endl;
-    }  
-   
+
+
+    //Console Input Section
+    std::cout << "Enter Money Spent, with a short description" << std::endl;
+    std::cout << "Money Spent :" << std::endl;
+    double itemAmount;
+    std::string itemDescription;
+    std::cin >> itemAmount;
+    std::cout << "Description :" << std::endl;
+    std::cin >> itemDescription;
+    item.setPrice(itemAmount);
+    item.setDescription(itemDescription);
     
-        Money2 money2 (money2Amt -money1.getAmount(), money1_ptr);
-    if (money2.getAmount() <= 0)
-        std::cout << "out of money!" << std::endl;
-  
+     
+
+     
     
 
     
