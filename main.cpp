@@ -47,31 +47,45 @@ int main()
     std::cout << "                          " << std::endl;
 
     //Money class(es) instantiation(s)
-    Money1 money1(double(lineVec[0]));
-    Money2 money2(double(lineVec[1]));
+    double money1AMT = double(lineVec[0]);
+    double money2AMT = double(lineVec[1]);
+    Money1 money1(money1AMT);
+    Money2 money2(money2AMT);
     Item item;
 
 
     //Console Input Section
-    std::cout << "Enter Money Spent, with a short description" << std::endl;
-    std::cout << "Money Spent :" << std::endl;
-    double itemAmount;
-    std::string itemDescription;
-    std::cin >> itemAmount;
-    std::cout << "Description :" << std::endl;
-    std::cin >> itemDescription;
-    item.setPrice(itemAmount);
-    item.setDescription(itemDescription);
+    std::cout << "What would you like to do? :" <<std::endl;
+    std::cout << "  1. Enter an item(s)" <<std::endl;
+    std::cout << "  2. Exit" <<std::endl;
+    char userInput;
+    while (std::cin >> userInput)
+    {
+        if (userInput == '1')
+        {
+            std::cout << "Enter Money Spent, with a short description" << std::endl;
+            L:std::cout << "Money Spent :" << std::endl;
+            double itemAmount;
+            std::string itemDescription;
+            std::cin >> itemAmount;
+            std::cout << "Description :" << std::endl;
+            std::cin >> itemDescription;
+            item.setPrice(itemAmount);
+            item.setDescription(itemDescription);
+            money1.deductItem(item);
+        }
+        else if (userInput == '2')
+        {
+            std::cout << "Exiting.....goodbye" << std::endl;
+            return 0;
+        }
+        else
+        {
+            std::cerr << "Incorrect input choice, exiting, without forgiveness...goodbye" << std::endl;
+            return -1;
+        }
+    }
     
-     
-
-     
-    
-
-    
-
-
-
 
 
 
@@ -79,3 +93,4 @@ int main()
     return 0;
 
 }
+
