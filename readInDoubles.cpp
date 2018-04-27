@@ -2,7 +2,8 @@
 #include <string>
 #include <iostream>
 
-//B: stands for "behaviour"
+//B: stands for "behaviour". Where a new behaviour extends an old behavior, that old behavior will
+//be deleted from here
 
 int main()
 {
@@ -29,15 +30,16 @@ int main()
     amountsFile.close();
     
 
+    //B:From input read in a value (double) such that:
+    //if prev val - new val > 0, we replace the first line with result(prev val - new val)
+    //else the first line becomes 0, and the second line is result(prev val - new val + second line) add as prev - new is <0 in this case
     //
-    //B:Read in a double value and change first line in the file to that value. Include checks that it
-    //has actually been done.
-    //
-   
+
     double lines[2] = {number1,number2}; //TODO: I accidently wrote double[2]={number1,number2} and this compiled...but what is the use of this? No varibable named array?
 
+    double inputVal;
     std::cout << "Enter a number to replace the first line of the file by " << std::endl;
-    std::cin >> lines[0];
+    std::cin >> inputVal;
 
     amountsFile.open(filename,std::ios::out);
     
@@ -49,8 +51,15 @@ int main()
         "Exiting....\n"<< std::endl;
         return -1;
     }
-    amountsFile <<  lines[0] <<'\n'<<  lines[1] << '\n';
+    double newFirstLine = lines[0] - inputVal;
+    if (newFirstLine >= 0) 
+        amountsFile <<  newFirstLine <<'\n'<<  lines[1] << '\n';
+    else amountsFile << 0 << '\n' << (lines[1] + newFirstLine) << '\n';
+    
     amountsFile.close();
+
+
+
 
 
      
