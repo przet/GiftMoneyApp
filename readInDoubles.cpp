@@ -1,6 +1,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <sstream> 
 
 //B: stands for "behaviour". Where a new behaviour extends an old behavior, that old behavior will
 //be deleted from here
@@ -57,6 +58,31 @@ int main()
     else amountsFile << 0 << '\n' << (lines[1] + newFirstLine) << '\n';
     
     amountsFile.close();
+    //B: Read in a description and append to bottom of the file
+
+    std::cout << "\n\n Please Enter a description (include \" \"): " << std::endl;
+    
+    std::string description;
+    while (std::cin)
+    {
+        std::cin >> description;
+        std::string token;
+        std::cin >> token;
+        if (token == "\"")
+        {
+            description = description;
+            break;
+        }
+        else
+            description += description;
+    }
+    
+
+    amountsFile.open(filename,std::ios::app);
+    amountsFile << '\n' << description << '\n';
+    amountsFile.close();
+    
+    
 
 
 
