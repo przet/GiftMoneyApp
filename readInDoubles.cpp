@@ -7,6 +7,11 @@
 
 int main()
 {
+    std::string mystr;
+    std::cout << "What is your name? " << std::endl;
+    getline(std::cin, mystr);
+    std::cout << "Hello " << mystr << std::endl;
+
     std::string filename = "amounts.txt";
     std::fstream amountsFile(filename, std::ios::in);
     if(amountsFile.fail())
@@ -40,7 +45,7 @@ int main()
     double inputVal;
     std::cout << "Enter a number to replace the first line of the file by " << std::endl;
     std::cin >> inputVal;
-
+    
     amountsFile.open(filename,std::ios::out);
     
     if(amountsFile.fail())
@@ -62,27 +67,18 @@ int main()
     std::cout << "\n\n Please Enter a description : " << std::endl;
     
     std::string description;
-    std::cin >> description;
-    std::getline(std::cin,description);
-   
-  
-    
-
+    getline(std::cin,description);
+    std::cout << description << std::endl; 
     amountsFile.open(filename,std::ios::app);
     amountsFile << '\n' << description << '\n';
     amountsFile.close();
-    
-    
-
-
-
-
-
      
 
 
 
    
+
+    std::cout << "Exiting..." << std::endl;
     return 0;
 }
 
