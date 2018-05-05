@@ -41,7 +41,12 @@ int main()
         "DON'T include any symbols like $"<< std::endl;
     std::cin >> inputVal; 
     
-    amountsFile.open(filename,std::ios::out);
+    amountsFile.open(filename,std::ios::in | std::ios::out);//This prevents opening in out only
+                                                            //, which overwrites everything in the file!
+                                                            // Overrite removes any previous descriptions we
+                                                            // do below - the money remains because we are first
+                                                            // (above) reading it in, then storing it/writing it back!
+                                                            //TODO Why bitwise ?
     if(amountsFile.fail())
     {
         std::cerr <<"\nError!!\nThe file " <<filename 
@@ -57,11 +62,10 @@ int main()
     
     amountsFile.close();
     
-    //B: Read in a description and the corresponding amount and append to bottom of the file
+    //B: Read in a description  and append to bottom of the file
      std::cout << "Enter the item's description... When done, enter 'end' on a new line " << std::endl;
     std::string description;
     amountsFile.open(filename,std::ios::app);
-    amountsFile << "\n\n" << "----------------------------------" << '\n';
 
     while(getline(std::cin,description) && description != "end")
         amountsFile << description<<'\n';
