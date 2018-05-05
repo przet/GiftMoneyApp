@@ -57,12 +57,13 @@ int main()
     amountsFile.close();
     
     //B: Read in a description and append to bottom of the file
-    std::cout << "\n\nPlease Enter a description : " << std::endl;
+     std::cout << "Please enter a description... When done, enter 'end' on a new line " << std::endl;
     std::string description;
-    getline(std::cin,description);
-    std::cout << description << std::endl; 
     amountsFile.open(filename,std::ios::app);
-    amountsFile << '\n' << description << '\n';
+
+    while(getline(std::cin,description) && description != "end")
+        amountsFile << '\n' << description << '\n';
+
     amountsFile.close();
     std::cout << "Exiting..." << std::endl;
     return 0;
