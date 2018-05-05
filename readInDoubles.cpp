@@ -25,8 +25,8 @@ int main()
     
     double number1, number2;
     amountsFile >> number1 >> number2;
-    std::cout << number1 << std::endl;
-    std::cout << number2 << std::endl;
+    std::cout << "\n\nGift Money Amount One: "<< number1 << std::endl;
+    std::cout << "Gift Money Amount One: " << number2 << "\n" << std::endl;
     amountsFile.close();
 
     //B:From input read in a value (double) such that:
@@ -37,7 +37,8 @@ int main()
     double lines[2] = {number1,number2}; //TODO: I accidently wrote double[2]={number1,number2} and this compiled...but what is the use of this? No varibable named array?
 
     double inputVal;
-    std::cout << "Enter a number to replace the first line of the file by " << std::endl;
+    std::cout << "Enter the price of the item you wish to deduct.\n"
+        "DON'T include any symbols like $"<< std::endl;
     std::cin >> inputVal; 
     
     amountsFile.open(filename,std::ios::out);
@@ -56,13 +57,14 @@ int main()
     
     amountsFile.close();
     
-    //B: Read in a description and append to bottom of the file
-     std::cout << "Please enter a description... When done, enter 'end' on a new line " << std::endl;
+    //B: Read in a description and the corresponding amount and append to bottom of the file
+     std::cout << "Enter the item's description... When done, enter 'end' on a new line " << std::endl;
     std::string description;
     amountsFile.open(filename,std::ios::app);
+    amountsFile << "\n\n" << "----------------------------------" << '\n';
 
     while(getline(std::cin,description) && description != "end")
-        amountsFile << '\n' << description << '\n';
+        amountsFile << description<<'\n';
 
     amountsFile.close();
     std::cout << "Exiting..." << std::endl;
