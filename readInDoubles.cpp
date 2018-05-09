@@ -1,6 +1,7 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <algorithm> //std::find
 
 //B: stands for "behaviour". Where a new behaviour extends an old behavior, that old behavior will
 //be deleted from here
@@ -40,6 +41,7 @@ int main()
     std::cout << "Enter the price of the item you wish to deduct.\n"
         "DON'T include any symbols like $"<< std::endl;
     std::cin >> inputVal; 
+    //TODO: guard against non numerical input. Could check if first char is NOT in ascii set containing numbers
     
     amountsFile.open(filename,std::ios::in | std::ios::out);//This prevents opening in out only
                                                             //, which overwrites everything in the file!
@@ -60,15 +62,16 @@ int main()
         amountsFile <<  newFirstLine <<'\n'<<  lines[1] << '\n';
     else amountsFile << 0 << '\n' << (lines[1] + newFirstLine) << '\n';
     
+    
     amountsFile.close();
     
     //B: Read in a description  and append to bottom of the file
-     std::cout << "Enter the item's description... When done, enter 'end' on a new line " << std::endl;
+    std::cout << "Enter the item's description... When done, enter 'end' on a new line " << std::endl;
     std::string description;
     amountsFile.open(filename,std::ios::app);
 
     while(getline(std::cin,description) && description != "end")
-        amountsFile << description<<'\n';
+        amountsFile << description<<"    $" <<inputVal <<'\n';
 
     amountsFile.close();
     std::cout << "Exiting..." << std::endl;
