@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream> //std::cerr
 #include <QFileInfo>
+#include <QFile>
 #include <QIODevice>
 #include <QString>
 #include <QTextStream>
@@ -23,6 +24,7 @@ giftmoney::giftmoney(QWidget *parent) :
 
 giftmoney::~giftmoney()
 {
+    createBackup();
     delete ui;
 }
 
@@ -99,6 +101,12 @@ void giftmoney::on_openFileButton_clicked()
    QDesktopServices::openUrl(
                QUrl::fromLocalFile((QFileInfo("../../../amounts.txt"))
                                    .absoluteFilePath()));
+}
+
+void giftmoney::createBackup()
+{
+    QString newFile = filename_qstr_new+currentTime_qstr;
+    QFile::copy(filename_qstr, newFile );
 }
 
 void giftmoney::addDescription(double price)

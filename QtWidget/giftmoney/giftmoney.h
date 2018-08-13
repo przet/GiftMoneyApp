@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QString>
+#include <QTime>
 #include <string>
 
 namespace Ui
@@ -27,6 +28,7 @@ private:
     void updateAmounts();
     void readAmounts();
     void addDescription(double price);
+    void createBackup();
     QString description_qstr;
     std::string description;
     QString amount1_str;
@@ -39,6 +41,13 @@ private:
     QString newAmount_str;
     double newAmount;
     std::string filename = "..\\..\\..\\amounts.txt";
+    QString filename_qstr = "..\\..\\..\\amounts.txt";
+    QString filename_qstr_new = "..\\..\\..\\amounts.txt.backup";
+    QTime qtime;
+    QTime currentTime= qtime.currentTime();
+
+    QString currentTime_qstr = currentTime.toString("hh:mm:ss.zzz");
+
 
 
 };
