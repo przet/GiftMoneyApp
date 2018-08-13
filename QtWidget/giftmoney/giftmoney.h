@@ -38,7 +38,7 @@ private:
     QString itemDescription;
     QString newAmount_str;
     double newAmount;
-    std::string filename = "..\\..\\amounts.txt";
+    std::string filename = "..\\..\\..\\amounts.txt";
 
 
 };
