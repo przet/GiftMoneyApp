@@ -1,0 +1,24 @@
+---------------------------
+giftmoney.exe - System Error
+---------------------------
+The code execution cannot proceed because Qt5Gui.dll was not found. Reinstalling the program may fix this problem. 
+---------------------------
+OK   
+---------------------------
+---------------------------
+giftmoney.exe - System Error
+---------------------------
+The code execution cannot proceed because Qt5Widgets.dll was not found. Reinstalling the program may fix this problem. 
+---------------------------
+OK   
+---------------------------
+---------------------------
+giftmoney.exe - System Error
+---------------------------
+The code execution cannot proceed because Qt5Core.dll was not found. Reinstalling the program may fix this problem. 
+---------------------------
+OK   
+---------------------------
+
++Paste plugins/platform folder in same dir as binary
+
