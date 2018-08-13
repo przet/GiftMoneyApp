@@ -3,13 +3,14 @@
 #include <fstream>
 #include <string>
 #include <iostream> //std::cerr
-#include <QFile>
+#include <QFileInfo>
 #include <QIODevice>
 #include <QString>
 #include <QTextStream>
 #include <stdexcept>
 #include <QDesktopServices>
 #include <QUrl>
+
 giftmoney::giftmoney(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::giftmoney)
@@ -96,8 +97,8 @@ void giftmoney::readAmounts()
 void giftmoney::on_openFileButton_clicked()
 {
    QDesktopServices::openUrl(
-               QUrl("file:///n:/programming/"
-                    "GiftMoneyApp/amounts.txt"));
+               QUrl::fromLocalFile((QFileInfo("../../../amounts.txt"))
+                                   .absoluteFilePath()));
 }
 
 void giftmoney::addDescription(double price)
